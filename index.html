@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        header {
+            background-color: grey;
+            color: black;
+            position: sticky;
+            top: 0;
+        }
+
+        /* li, ul { */
+        /* display: inline;
+      text-align: center;
+    } 
+    ul {
+      text-align: left;
+      position: fixed;
+      margin-left: 75%;
+    }
+    .nav {
+      text-align: center;
+    }
+    nav,h1,ul,li,a{
+      display:inline; */
+        /* } */
+        h1,
+        ul,
+        li {
+            display: inline-block;
+
+        }
+
+        ul {
+            padding-left: 60%;
+            gap: 20px;
+        }
+
+        li {
+            padding-left: 10px;
+        }
+
+        #home {
+            background-image: url(https://media.istockphoto.com/id/1145660545/photo/various-sports-equipment-balls-on-wooden-background.jpg?s=612x612&w=0&k=20&c=3kzt9PQHmfiMBHw2bigwS5IKRWYLp7qu7T4J4vr7ORU=);
+            background-size: cover;
+            background-position: center;
+            color: black;
+            text-align: center;
+            height: 100vh;
+            /* full screen */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .span {
+            border: normal;
+            border-radius: 5px;
+            background: blue;
+            color: white;
+            margin: 2px;
+            padding: 5px;
+        }
+
+        #gallery {
+            background-image: url(https://www.shutterstock.com/image-illustration/football-sport-online-on-smartphone-260nw-1865623297.jpg);
+            height: 500px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+            padding: 20px;
+            text-size-adjust: 100%;
+        }
+
+        .img-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .card {
+            gap: 15px;
+            margin-top: 12px;
+            border: solid;
+            border-color: white;
+            border-radius: 10px;
+        }
+
+        .card:hover {
+            background-color: grey;
+        }
+
+        .gallery {
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        #teams {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #CCCCCC;
+            text-align: center;
+        }
+
+        .team-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: lightblue;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 1000px;
+        }
+
+        .filter-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .filter-buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .filter-buttons button:hover {
+            background: green;
+        }
+
+        .team-card {
+            margin: 20px auto;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            width: 80%;
+            background: #f9f9f9;
+        }
+
+        .one,
+        .two {
+            text-align: center;
+            border: 3px solid #333;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            transition: 0.3s ease-in-out;
+            background: #fff;
+        }
+
+        .one:hover,
+        .two:hover {
+            border-color: #007bff;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            background-color: pink;
+        }
+
+        .team-card[data-sport="Volleyball"] {
+            background-image: url(https://t3.ftcdn.net/jpg/04/22/84/12/360_F_422841241_OR69MNhNG3Sxl6pmrKwuoBZPaZpZLt1a.jpg);
+        }
+
+        .team-card[data-sport="Basketball"] {
+            background-image: url(https://t3.ftcdn.net/jpg/05/70/06/64/360_F_570066449_SS8sx5K4ZsYXCcXvR014q2prysMs1kf2.jpg);
+        }
+
+        .team-card[data-sport="Cricket"] {
+            background-image: url(https://img.freepik.com/premium-vector/cricket-championship-design-concept-with-vector-illustration_30996-8233.jpg);
+        }
+
+        .team-card[data-sport="Football"] {
+            background-image: url(https://static.vecteezy.com/system/resources/thumbnails/042/960/183/small_2x/ai-generated-on-the-stadium-abstract-football-or-soccer-backgrounds-photo.jpg);
+        }
+
+        .one {
+            text-align: center;
+            border: 5px;
+            border-color: black;
+            border-radius: 5px;
+        }
+
+        .two {
+            text-align: center;
+        }
+
+        .team-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .two {
+            display: inline-block;
+            gap: 10px;
+        }
+
+        .team-card h3 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        p {
+            margin: 5px 0 0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #events {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            ;
+        }
+
+        #events h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #222;
+        }
+
+        .event-card {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 20px auto;
+            padding: 15px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background: #f9f9f9;
+            width: 600px;
+            text-align: left;
+        }
+
+        .event-card img {
+            border-radius: 10px;
+            margin-right: 18px;
+            background-color: linear-gradient(135deg, #ff512f, #dd2476);
+        }
+
+        .event-info {
+            flex: 1;
+        }
+
+        .event-info h3 {
+            margin: 0;
+            font-size: 22px;
+            color: #333;
+        }
+
+        .event-info p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .countdown {
+            font-size: 15px;
+            font-weight: normal;
+            margin-top: 7px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: #222;
+            color: black;
+            display: inline-block;
+            height: 40px;
+            width: 136px;
+        }
+
+        #vb.countdown {
+            background: #ADD8E6;
+        }
+
+        #bb.countdown {
+            background: #ff8c00;
+        }
+
+        #cr.countdown {
+            background: #28a745;
+        }
+
+        #fb.countdown {
+            background: #d9534f;
+        }
+
+        #register {
+            background-color: #fdf6e3;
+            /* soft background */
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #register h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        #register .form-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+        }
+
+        #register form {
+            flex: 1;
+        }
+
+        #register table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #register td {
+            padding: 12px 10px;
+            vertical-align: top;
+        }
+
+        #register input[type="text"],
+        #register input[type="email"],
+        #register input[type="tel"],
+        #register input[type="date"],
+        #register input[type="password"],
+        #register textarea,
+        #register select {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        #register .options {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        #register .options label {
+            white-space: nowrap;
+            font-weight: normal;
+        }
+
+        #register .upload-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #register .preview-box {
+            width: 150px;
+            height: 150px;
+            border: 2px dashed #999;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #555;
+            background: #fafafa;
+            margin-bottom: 10px;
+        }
+
+        #register button {
+            display: block;
+            margin: 20px auto 0;
+            padding: 12px 25px;
+            background-color: #003366;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        #register button:hover {
+            background-color: #0055aa;
+        }
+
+        #contact {
+            padding: 50px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #e8f5e9);
+        }
+
+        .contact-container {
+            max-width: 700px;
+            margin: auto;
+            background: linear-gradient(135deg, #003366, #009688);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        #contact h2 {
+            text-align: center;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        #contact p {
+            text-align: center;
+            font-size: 15px;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #004d40;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #0077b6;
+            outline: none;
+        }
+
+        textarea {
+            resize: none;
+            min-height: 100px;
+        }
+
+        button {
+            grid-column: span 2;
+            justify-self: center;
+            padding: 10px 30px;
+            background: pink;
+            color: black;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            width: auto;
+        }
+
+        button:hover {
+            background: lightgrey;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: black;
+        }
+    
+        nav ul li a:hover {
+            text-decoration: none;
+            color: white;
+        }
+        .img-container{
+            margin-left: 170px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Sport's Club 🏆</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#teams">Teams</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#register">Register</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="home">
+        <h2>About the Fest</h2>
+        <p>Join us for 4 exciting games full of fun, thrill, and sportsmanship!</p>
+        <p>“Don’t practice until you get it right. Practice until you can’t get it wrong.”</p>
+        <p><b>Games:</b> Volleyball | Basketball | Cricket | Football</p>
+        <br>
+        <button class="span" onclick="document.getElementById('register').scrollIntoView();">Register Now</button>
+    </section>
+    <br>
+    <section id="gallery">
+        <div class="gallery">
+            <h1>Gallery</h1>
+            <h2 font-family: Arial, sans-serif;>Welcome to our Gallery 🖼</h2>
+        </div>
+        <div class="img-container">
+            <div class="card">
+                <img src="https://img.olympics.com/images/image/private/t_s_pog_staticContent_hero_lg/f_auto/v1536936974/primary/exvzqcvorticinejmmel"
+                    height="250px" width="250px" alt="Volleyball">
+                <p>Volleyball</p>
+            </div>
+            <div class="card">
+                <img src="https://sundevils.com/sites/default/files/2024-10/Basketball-mens-hero.jpg" height="250px"
+                    width="250px" alt="Basketball">
+                <p>Basketball</p>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrva3MguYw3zp8T8PLtxgOxBJ4AXbTO71X4A&s"
+                    height="250px" width="250px" alt="Cricket">
+                <p>Cricket</p>
+            </div>
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/1558726582/photo/adult-football-competition-soccer-football-player-dribbling-a-ball-and-kick-a-ball-during.jpg?s=612x612&w=0&k=20&c=aRFpVrLzK777wMGL8O_pFvxuNSdBAWmFTsLjlGhms9c="
+                    height="250px" width="250px" alt="Football">
+                <p>Football</p>
+            </div>
+        </div>
+    </section>
+    <section id="teams">
+        <div class="filter-buttons">
+            <button onclick="filterTeams('all')">All Teams</button>
+            <button onclick="filterTeams('Volleyball')">Volleyball</button>
+            <button onclick="filterTeams('Basketball')">Basketball</button>
+            <button onclick="filterTeams('Cricket')">Cricket</button>
+            <button onclick="filterTeams('Football')">Football</button>
+        </div>
+
+        <h2>Our Teams</h2>
+
+        <div class="team-card" data-sport="Volleyball">
+            <h3>Team A</h3>
+            <h3>Volleyball 🏐</h3>
+            <div class="one">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3-lzC3OrFeqWABeP-kq8Alqn6uqG1pKFSpA&s"
+                    height="250" width="250" alt="Captain">
+                <p>Tom Joseph (Captain)</p>
+            </div>
+            <div class="two">
+                <img src="https://t3.ftcdn.net/jpg/14/63/45/02/360_F_1463450262_1pkguxGCOf9DeO55wgSNFZqGs7KuDjwy.jpg"
+                    height="200" width="200">
+                <p>Abhinav</p>
+            </div>
+            <div class="two">
+                <img src="https://media.istockphoto.com/id/1371823659/photo/boy-with-a-volleyball.jpg?s=612x612&w=0&k=20&c=4mzYO57_VHbHYUDhiIe3E8cpi3lwBBDbXlSD1s-YEQI="
+                    height="200" width="200">
+                <p>Nikhil</p>
+            </div>
+            <div class="two">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ6zxVk7UlU3ch9JnUA7JaiJIE8v8EMJpX4g&s"
+                    height="200" width="200">
+                <p>Kiran</p>
+            </div>
+            <div class="two">
+                <img src="https://media.istockphoto.com/id/925516344/photo/athletic-african-american-man-with-volleyball.jpg?s=612x612&w=0&k=20&c=jmKJ8VaH9K5QuYqn45q7K1tVKaEwBZlbVCX6j28l9rc="
+                    height="200" width="200">
+                <p>Shankar</p>
+            </div>
+            <div class="two">
+                <img src="https://www.shutterstock.com/image-photo/asian-volleyball-athlete-ball-260nw-205253992.jpg"
+                    height="200" width="200">
+                <p>Chaithanya</p>
+            </div>
+        </div>
+
+        <div class="team-card" data-sport="Basketball">
+            <h3>Team B</h3>
+            <h3>Basketball 🏀</h3>
+            <div class="one">
+                <img src="https://s.yimg.com/ny/api/res/1.2/cOluS5lTlK4vI2v2jaYNfw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQ0NDtjZj13ZWJw/https://media.zenfs.com/en/trojans_wire_usa_today_articles_495/6945ba8a7317f8bfa6c41aa0dd375496"
+                    height="250" width="250" alt="Captain">
+                <p>Siddarth (Captain)</p>
+            </div>
+            <div class="two">
+                <img src="https://cdn.britannica.com/82/212182-050-50D9F3CE/basketball-LeBron-James-Cleveland-Cavaliers-2018.jpg?w=400&h=225&c=crop"
+                    height="200" width="200">
+                <p>LeBron</p>
+            </div>
+            <div class="two">
+                <img src="https://cdn.britannica.com/65/234465-050-A5ECD52A/Bill-Russell-Boston-Celtics-undated-photo.jpg?w=400&h=300&c=crop"
+                    height="200" width="200">
+                <p>Chris Bosh</p>
+            </div>
+            <div class="two">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREPWBouV75PHqx_RVrMy7ccwB4J8mKA0rx9A&s"
+                    height="200" width="200">
+                <p>Shiva</p>
+            </div>
+            <div class="two">
+                <img src="https://media.istockphoto.com/id/494544619/photo/basketball-player.jpg?s=612x612&w=0&k=20&c=oN83gOhqdgIg_tOiRAuzlCkOD-zTeFBWRaGUpNmrBL8="
+                    height="200" width="200">
+                <p>Ram</p>
+            </div>
+            <div class="two">
+                <img src="https://media.istockphoto.com/id/499332065/photo/portrait-of-male-high-school-basketball-player.jpg?s=612x612&w=0&k=20&c=-43ijvlrRRpldTq_LbO8E9VY5i6cAGPRbc9DpOW7Evk="
+                    height="200" width="200">
+                <p>Kareem</p>
+            </div>
+            <div class="two">
+                <img src="https://media.istockphoto.com/id/499330463/photo/portrait-of-high-school-basketball-player.jpg?s=612x612&w=0&k=20&c=HF5_B2_Bk7QbhY8ZPrbsH7rVRCDlIsMxLWrmSsecEXQ="
+                    height="200" width="200">
+                <p>Stephen</p>
+            </div>
+            <div class="two">
+                <img src="https://img.freepik.com/premium-photo/portrait-happy-indian-asian-boy-playing-holding-basketball-against-white-wall_466689-16621.jpg"
+                    height="200" width="200">
+                <p>James Harden</p>
+            </div>
+            <div class="two">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaezOs3NYJrk3ehohskygLFC23S1836rSgsQ&s"
+                    height="200" width="200">
+                <p>Joel Embiid</p>
+            </div>
+            <div class="two">
+                <img src="https://www.discoverwalks.com/blog/wp-content/uploads/2023/03/654px-stephen_curry_dribbling_2016_cropped.jpg"
+                    height="200" width="200">
+                <p>Joseph</p>
+            </div>
+            <div class="two">
+                <img src="https://www.shutterstock.com/image-photo/young-indian-sportsman-holding-basketball-260nw-1530694598.jpg"
+                    height="200" width="200">
+                <p>Ben Simmons</p>
+            </div>
+            <div class="two">
+                <img src="https://img.freepik.com/free-photo/full-body-studio-portrait-black-basketball-player-playing-with-ball_613910-1478.jpg?semt=ais_incoming&w=740&q=80"
+                    height="200" width="200">
+                <p>Larry Bird</p>
+            </div>
+            <div class="two">
+                <img src="https://img.freepik.com/free-photo/close-up-professional-basketball-player-training_23-2147604928.jpg?semt=ais_incoming&w=740&q=80"
+                    height="200" width="200">
+                <p>Wilt Chamberlain</p>
+            </div>
+        </div>
+
+        <div class="team-card" data-sport="Cricket">
+            <h3>Team C</h3>
+            <h3>Cricket 🏏</h3>
+            <div class="one">
+                <img src="https://ss-i.thgim.com/public/cricket/7o7ezx/article54606655.ece/alternates/FREE_385/mahmudullahjpg"
+                    height="250" width="250" alt="Captain">
+                <p>Viswanathan Anand (Captain)</p>
+            </div>
+            <div class="two">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBCQE2JWjjri-X6IUvdHZWxcFkCpYoXRNqow&s"
+                    height="200" width="200">
+                <p>Dhyan Chand</p>
+            </div>
+            <div class="two">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh33LksogtQeMLOemimjzAS71yU69BEkQfqQ&s"
+                    height="200" width="200">
+                <p>Janson</p>
+            </div>
+            <div class="two">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfKR17Z8kjuQ6w78gh0JOZlJOEG3bsU4zd8g&s"
+                    height="200" width="200">
+                <p>Prasad</p>
+            </div>
+            <div class="two">
+                <img src="https://www.shutterstock.com/image-photo/boy-cricket-uniform-holding-bat-600nw-2151745107.jpg"
+                    height="200" width="200">
+                <p></p>
+            </div>
+            <div class="two">
+                <img src="https://www.aljazeera.com/wp-content/uploads/2024/06/2024-03-05T092914Z_1609262895_UP1EK350QCN0J_RTRMADP_3_CRICKET-TEST-IND-ENG-1-1717403458.jpg?resize=1920%2C1440"
+                    height="200" width="200">
+                <p>Jazeera</p>
+            </div>
+            <div class="two">
+                <img src="https://www.shutterstock.com/image-photo/man-portrait-cricket-player-bat-600nw-2440988429.jpg"
+                    height="200" width="200">
+                <p>Arav</p>
+            </div>
+            <div class="two">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyFBV13o_1DlTSmBg5hB61wk3ddxCdLhbPqQ&s"
+                    height="200" width="200">
+                <p>Aditya</p>
+            </div>
+            <div class="two">
+                <img src="https://www.shutterstock.com/image-photo/man-portrait-cricket-player-sports-600nw-2440988757.jpg"
+                    height="200" width="200">
+                <p>Karthik</p>
+            </div>
+            <div class="two">
+                <img src="https://www.shutterstock.com/image-photo/portrait-cricketer-holding-cricket-boll-600nw-2370517217.jpg"
+                    height="200" width="200">
+                <p>Dhruv</p>
+            </div>
+            <div class="two">
+                <img src="https://i.pinimg.com/736x/55/fc/86/55fc863ad174c626de08cd7f08e32d9a.jpg" height="200"
+                    width="200">
+                <p>Henry</p>
+            </div>
+        </div>
+
+        <div class="team-card" data-sport="Football">
+            <h3>Team D</h3>
+            <h3>Football ⚽</h3>
+            <div class="one">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYOfiTn09_Jo3gq_iZvpeMyB1G-aHaDauy-Q&s"
+                    height="250" width="250" alt="Captain">
+                <p>Hitesh (Captain)</p>
+            </div>
+            <div class="two">
+                <img src="https://media.istockphoto.com/id/533956625/photo/footballer.jpg?s=612x612&w=0&k=20&c=6XjXEhobYctv_6CqsVa6kRRwzaTWS6gJ-csDI9WjfrY="
+                    height="200" width="200">
+                <p>Madhu</p>
+            </div>
+            <div class="two">
+                <img src="https://media.istockphoto.com/id/855049932/photo/portrait-of-teenage-soccer-player.jpg?s=612x612&w=0&k=20&c=l8-6IrPO-RXw8eWxFwPYrSmXSVqlzISKN0J6dMSIfCo="
+                    height="200" width="200">
+                <p>Krishna</p>
+            </div>
+            <div class="two">
+                <img src="https://www.shutterstock.com/image-photo/photo-teen-boy-sportswear-holding-260nw-1044501175.jpg"
+                    height="200" width="200">
+                <p>Seshu</p>
+            </div>
+            <div class="two">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpCwA223VqtY3skTPHE3YQfjF3UD3G8p6nKg&s"
+                    height="200" width="200">
+                <p>Tyreek Hill</p>
+            </div>
+            <div class="two">
+                <img src="https://c.files.bbci.co.uk/D99D/production/_130290755_gettyimages-1082237082-594x594.jpg"
+                    height="200" width="200">
+                <p>Lamar Jackson</p>
+            </div>
+            <div class="two">
+                <img src="https://images2.minutemediacdn.com/image/upload/c_crop,w_7157,h_4025,x_0,y_379/c_fill,w_1200,ar_4:3,f_auto,q_auto,g_auto/images/GettyImages/mmsport/90min_en_international_web/01j73kgfyj675byrq154.jpg"
+                    height="200" width="200">
+                <p>Patrick Mahomes</p>
+            </div>
+            <div class="two">
+                <img src="https://staticg.sportskeeda.com/editor/2022/12/fa791-16721215269550-1920.jpg" height="200"
+                    width="200">
+                <p>Chris Jones</p>
+            </div>
+            <div class="two">
+                <img src="https://ygo-assets-entities-emea.yougov.net/ab9710f2-e507-11ee-9c3d-a3d72aa881d2.jpg?zcw=404&zch=404&zct=0&zcl=104"
+                    height="200" width="200">
+                <p>T.J. Watt</p>
+            </div>
+            <div class="two">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRejppeB41zFBtw4ZDYny9JUXst6ysj1M8p-Q&s"
+                    height="200" width="200">
+                <p>George Kittle</p>
+            </div>
+            <div class="two">
+                <img src="https://i.pinimg.com/736x/23/a7/0a/23a70a983a25e68c3decbefd7e60801a.jpg" height="200"
+                    width="200">
+                <p>Jalen</p>
+            </div>
+        </div>
+
+    </section>
+    <section id="events">
+        <h2>Events</h2>
+        <div class="event-card">
+            <h3>Volleyball Tournament</h3>
+            <img src="https://marketplace.canva.com/EAGWJ-TeN7M/1/0/283w/canva-dark-blue-and-yellow-illustrated-volleyball-tournament-poster-x25xRqdwgvk.jpg"
+                height="300px" width="300px">
+            <p>11th Nov, 5 PM</p>
+            <div id="vb" class="countdown"></div>
+        </div>
+        <div class="event-card">
+            <h3>Basketball Tournament</h3>
+            <img src="https://img.pikbest.com/origin/06/18/91/56zpIkbEsTd8S.jpg!bw700" height="300px" width="300px">
+            <p>20th Dec, 4 PM</p>
+            <div id="bb" class="countdown"></div>
+        </div>
+        <div class="event-card">
+            <h3>Cricket Tournament</h3>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAzp-8qB2ka1T7cTxamlIcqi75XwgO7QjoVg&s"
+                height="300px" width="300px">
+            <p>29th Sept, 10 AM</p>
+            <div id="cr" class="countdown"></div>
+        </div>
+        <div class="event-card">
+            <h3>Football Tournament</h3>
+            <img src="https://img.freepik.com/premium-vector/football-league-tournament-poster-design-vector_94250-377.jpg?w=360"
+                height="300px" width="300px">
+            <p>12th Dec, 7 PM</p>
+            <div id="fb" class="countdown"></div>
+        </div>
+
+    </section>
+    <section id="register">
+        <h2>Registration Form</h2>
+        <div class="form-container">
+            <form>
+                <table>
+                    <tr>
+                        <td>First Name:</td>
+                        <td><input type="text" name="fname" required></td>
+                    </tr>
+                    <tr>
+                        <td>Last Name:</td>
+                        <td><input type="text" name="lname" required></td>
+                    </tr>
+                    <tr>
+                        <td>Date of Birth:</td>
+                        <td><input type="date" name="dob" required></td>
+                    </tr>
+                    <tr>
+                        <td>Gender:</td>
+                        <td>
+                            <div class="options">
+                                <label><input type="radio" name="gender" value="male"> Male</label>
+                                <label><input type="radio" name="gender" value="female"> Female</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="email" name="email" required></td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number:</td>
+                        <td><input type="tel" name="phone" placeholder="+91 9876543210" required></td>
+                    </tr>
+                    <tr>
+                        <td>Address:</td>
+                        <td><textarea name="address" rows="3" required></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Sports Interested:</td>
+                        <td>
+                            <select name="sport" required>
+                                <option value="">Select Game</option>
+                                <option>Volleyball</option>
+                                <option>Basketball</option>
+                                <option>Cricket</option>
+                                <option>Football</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Membership Type:</td>
+                        <td>
+                            <select name="membership">
+                                <option value="regular">Regular</option>
+                                <option value="student">Student</option>
+                                <option value="premium">Premium</option>
+                                <option value="family">Family</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Preferred Timings:</td>
+                        <td>
+                            <select name="timing">
+                                <option value="morning">Morning (6 AM – 9 AM)</option>
+                                <option value="afternoon">Afternoon (12 PM – 3 PM)</option>
+                                <option value="evening">Evening (5 PM – 8 PM)</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input type="password" name="password" required></td>
+                    </tr>
+                    <tr>
+                        <td>Confirm Password:</td>
+                        <td><input type="password" name="confirm" required></td>
+                    </tr>
+                </table>
+                <br>
+                <button type="submit">Register</button>
+            </form>
+
+            <!-- Right: Upload box -->
+            <div class="upload-box">
+                <div class="preview-box">Upload Photo</div>
+                <input type="file" name="photo" accept="image/*">
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-container">
+            <h2>Contact Us</h2>
+            <p>Have questions about our sports club, memberships, or events? Fill in the details below and our team will
+                get back to you!</p>
+
+            <form class="contact-form" action="./submit.html">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="+91 9876543210" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" required>
+                        <option value="" disabled selected>Select subject</option>
+                        <option>General Enquiry</option>
+                        <option>Membership Information</option>
+                        <option>Sports Training</option>
+                        <option>Event Participation</option>
+                        <option>Feedback / Suggestions</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="sports">Interested Sports</label>
+                    <select id="sports">
+                        <option value="" disabled selected>Select sport</option>
+                        <option>Volleyball</option>
+                        <option>Basketball</option>
+                        <option>Cricket</option>
+                        <option>Football</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="message">Message</label>
+                    <textarea id="message" placeholder="Write your message here" required></textarea>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Sports Fest | All Rights Reserved</p>
+    </footer>
+    <script src="./index.js"></script>
+</body>
+
+</html>
